@@ -614,3 +614,95 @@ html[lang="ar"][dir="rtl"] .english-text { display: none; }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }
+
+/* ═══════════════ OVERRIDES ═══════════════ */
+body {
+  background: radial-gradient(circle at 50% 20%, #1a2452 0%, #0f1830 55%, #070c1c 100%) !important;
+  background-attachment: fixed !important;
+}
+
+.scene {
+  background: transparent !important;
+}
+
+.scene::after {
+  background-image: none !important;
+}
+
+.scene-illustration {
+  mix-blend-mode: multiply;
+}
+
+#invitation-card {
+  background-color: #0f1830 !important;
+  background-image:
+    url('assets/back.png'),
+    radial-gradient(circle at 50% 20%, #1a2452 0%, #0f1830 55%, #070c1c 100%) !important;
+  background-size: 135% 85%, cover !important;
+  background-position: bottom center, center !important;
+  background-repeat: no-repeat, no-repeat !important;
+  background-blend-mode: multiply, normal !important;
+  background-attachment: fixed, fixed !important;
+}
+
+#invitation-card main {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  box-shadow: none !important;
+}
+
+#details-card {
+  background: rgba(8, 12, 28, 0.55) !important;
+  border: 1px solid rgba(200, 160, 64, 0.22) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+#details-card > div {
+  position: relative;
+  z-index: 1;
+}
+
+html, body, #invitation-card {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+#invitation-card::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+}
+
+#lang-switch {
+  background: rgba(16, 20, 38, 0.55) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(200, 160, 64, 0.45) !important;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+  padding: 4px !important;
+  gap: 3px !important;
+  border-radius: 999px !important;
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
