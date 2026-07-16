@@ -319,13 +319,10 @@ html[lang="ar"][dir="rtl"] .english-text { display: none; }
   position: fixed;
   inset: 0;
   z-index: 40;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
   overflow-y: auto;
+  overflow-x: hidden;
   background: transparent;
   -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
 }
 
 .invitation-card.show {
@@ -338,27 +335,19 @@ html[lang="ar"][dir="rtl"] .english-text { display: none; }
   position: relative;
   width: 100%;
   max-width: 520px;
-  min-height: 100vh;
-  min-height: 100dvh;
-  overflow: visible;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  margin: 0 auto;
   padding: 0;
-  margin: 0;
   border-radius: 0;
   background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  border-left: none;
-  border-right: none;
-  box-shadow: none;
 }
 
 .invitation-border {
-  position: absolute;
-  inset: 12px;
+  position: fixed;
+  top: 12px;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100% - 24px, 508px);
   border-radius: 24px;
   border: 1px solid rgba(200, 160, 64, 0.12);
   pointer-events: none;
@@ -372,24 +361,24 @@ html[lang="ar"][dir="rtl"] .english-text { display: none; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 40px;
-  padding-bottom: 80px;
-  padding-left: 28px;
-  padding-right: 28px;
+  padding-top: env(safe-area-inset-top, 32px);
+  padding-bottom: env(safe-area-inset-bottom, 40px);
+  padding-left: 24px;
+  padding-right: 24px;
   gap: 28px;
 }
 
 @media (min-height: 700px) {
   .invitation-content {
-    padding-top: 80px;
-    gap: 32px;
+    padding-top: 50px;
+    gap: 30px;
   }
 }
 
 @media (min-height: 800px) {
   .invitation-content {
-    padding-top: 100px;
-    gap: 36px;
+    padding-top: 60px;
+    gap: 32px;
   }
 }
 
@@ -679,7 +668,8 @@ body {
   background-attachment: fixed, fixed !important;
 }
 
-#invitation-card main {
+#invitation-card main,
+.invitation-main {
   background: transparent !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
