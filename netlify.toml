@@ -1,0 +1,22 @@
+[build]
+  publish = "."
+  # No build command: styles.css is already compiled (Tailwind CLI output + manual overrides).
+  # Do NOT run `npm run build` here — it would regenerate styles.css from input.css alone
+  # and wipe out the hand-written overrides appended at the end of styles.css.
+
+[[redirects]]
+  from = "/invitation.html"
+  to = "/"
+  status = 301
+  force = false
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

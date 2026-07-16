@@ -1,0 +1,285 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #003527;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #064e3b;
+  --color-on-primary-container: #80bea6;
+  --color-surface: #fdfbf8;
+  --color-surface-variant: #e0e0e0;
+  --color-on-surface: #1a1c1e;
+  --color-on-surface-variant: #44474e;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f7f2f0;
+  --color-error: #ba1a1a;
+  --color-outline: #74777f;
+
+  --font-display-calligraphy: "Libre Caslon Text", serif;
+  --font-body-md: "Source Serif 4", serif;
+  --font-label-sm: "Montserrat", sans-serif;
+}
+
+/* ═══════════════ GLOBAL ═══════════════ */
+
+:root{
+  --parchment:#F7EED8;
+  --parchment-mid:#EFE2C4;
+  --parchment-dark:#D8C8A0;
+  --cream:#FDFAF4;
+  --rose-dark:#9B3A4F;
+  --rose-mid:#C26070;
+  --rose-light:#E8A8B4;
+  --rose-blush:#F5D8DE;
+  --gold:#C8A040;
+  --gold-light:#E0C060;
+  --mauve:#7A5060;
+  --brown:#5A3828;
+  --wax-red:#8B1A2A;
+  --wax-shine:#C43050;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html,body{
+  width:100%;
+  min-height:100%;
+}
+
+body{
+  font-family:'Cairo',sans-serif;
+  background:#E7DAC0;
+  color:var(--mauve);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ═══════════════ BILINGUAL TEXT ═══════════════ */
+[data-lang="en"] .arabic-text{display:none;}
+[data-lang="ar"] .english-text{display:none;}
+html[lang="en"][dir="ltr"] .arabic-text{display:none;}
+html[lang="ar"][dir="rtl"] .english-text{display:none;}
+
+/* ═══════════════ SCENE (envelope viewport) ═══════════════ */
+.scene{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:100;
+  background:#1a1a1a;
+  padding:24px;
+  perspective:1600px;
+  transition:transform 0.8s ease-in;
+}
+.scene.gone{
+  transform:translateY(-100%);
+  pointer-events:none;
+}
+
+.scene::before{
+  content:"";
+  position:absolute;
+  left:50%;top:50%;
+  width:min(80vw, 340px);
+  height:50px;
+  transform:translate(-50%, 190px);
+  background:radial-gradient(ellipse, rgba(139,58,74,0.30) 0%, rgba(139,58,74,0) 72%);
+  filter:blur(2px);
+  pointer-events:none;
+  z-index:1;
+}
+
+.scene::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(200,160,64,0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(155,58,79,0.06) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(200,160,64,0.04) 0%, transparent 60%);
+  pointer-events:none;
+  z-index:0;
+}
+
+.scene-illustration{
+  position:absolute;
+  left:50%;
+  bottom:22px;
+  transform:translateX(-50%);
+  width:min(34vw, 140px);
+  height:auto;
+  z-index:2;
+  pointer-events:none;
+  filter:drop-shadow(0 8px 18px rgba(90,40,50,0.22));
+}
+.scene.gone ~ .scene-illustration,
+.scene.gone .scene-illustration{display:none;}
+
+/* ═══════════════ ENVELOPE ═══════════════ */
+.envelope-container{
+  position:relative;
+  width:380px;
+  height:250px;
+  cursor:pointer;
+  perspective:1000px;
+  margin-top:-220px;
+  z-index:30;
+}
+.envelope-body{
+  position:absolute;
+  inset:0;
+  background:transparent;
+  border-radius:4px;
+  box-shadow:none;
+  border:none;
+  z-index:1;
+  overflow:visible;
+  perspective:800px;
+}
+/* ═══════════════ INVITATION CARD — FILIGREE CORNER ═══════════════ */
+.filigree-corner{
+  position:relative;
+}
+.filigree-corner::before{
+  content:"";
+  position:absolute;
+  inset:6px;
+  border:1px solid rgba(200,160,64,0.15);
+  border-radius:12px;
+  pointer-events:none;
+  z-index:1;
+}
+
+/* ═══════════════ REVEAL ANIMATION ═══════════════ */
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity 0.8s ease, transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+.reveal-left{
+  opacity:0;
+  transform:translateX(-40px);
+  transition:opacity 0.8s ease, transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-left.in{opacity:1;transform:translateX(0);}
+
+.reveal-right{
+  opacity:0;
+  transform:translateX(40px);
+  transition:opacity 0.8s ease, transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-right.in{opacity:1;transform:translateX(0);}
+
+.reveal-scale{
+  opacity:0;
+  transform:scale(0.7);
+  transition:opacity 0.8s ease, transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-scale.in{opacity:1;transform:scale(1);}
+
+.reveal-rotate{
+  opacity:0;
+  transform:rotate(-8deg) scale(0.9);
+  transition:opacity 0.8s ease, transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-rotate.in{opacity:1;transform:rotate(0) scale(1);}
+
+/* ═══════════════ ENTRANCE ANIMATIONS ═══════════════ */
+@keyframes envelopeEntrance{
+  0%{opacity:0;transform:scale(0.6) translateY(60px);}
+  60%{opacity:1;transform:scale(1.04) translateY(-8px);}
+  100%{opacity:1;transform:scale(1) translateY(0);}
+}
+
+@keyframes logoFadeIn{
+  0%{opacity:0;transform:scale(0.5);}
+  100%{opacity:1;transform:scale(1);}
+}
+
+@keyframes headerFloat{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-4px);}
+}
+
+@keyframes circleBreath{
+  0%,100%{opacity:0.06;transform:scale(1);}
+  50%{opacity:0.12;transform:scale(1.08);}
+}
+
+@keyframes shimmer{
+  0%{background-position:200% 0;}
+  100%{background-position:-200% 0;}
+}
+
+@keyframes drawLine{
+  0%{width:0;}
+  100%{width:100%;}
+}
+
+@keyframes countPop{
+  0%{transform:scale(0.5);opacity:0;}
+  70%{transform:scale(1.15);}
+  100%{transform:scale(1);opacity:1;}
+}
+
+@keyframes slideUp{
+  0%{transform:translateY(40px);opacity:0;}
+  100%{transform:translateY(0);opacity:1;}
+}
+
+@keyframes textRevealRtl{
+  0%{clip-path:inset(0 0 0 100%);}
+  100%{clip-path:inset(0 0 0 0%);}
+}
+
+/* Applied entrance classes */
+.envelope-entrance{animation:envelopeEntrance 1s cubic-bezier(0.16,1,0.3,1) forwards;}
+.logo-entrance{animation:logoFadeIn 0.8s ease-out 0.2s both;}
+.header-float{animation:headerFloat 3s ease-in-out infinite 1s;}
+.circle-breath{animation:circleBreath 4s ease-in-out infinite;}
+.text-reveal{animation:textRevealRtl 0.8s ease-out forwards;}
+
+/* ═══════════════ PETALS ═══════════════ */
+.petal,.floating-petal{
+  position:fixed;
+  top:-20px;
+  pointer-events:none;
+  z-index:5;
+  opacity:0;
+}
+
+/* ═══════════════ INVITATION CARD ═══════════════ */
+.card-hidden{
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(100vh);
+  transition:opacity 1.2s ease, transform 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+#invitation-card.show{
+  opacity:1 !important;
+  pointer-events:auto !important;
+  transform:translateY(0) !important;
+}
+
+/* Countdown flip */
+.countdown-box{
+  transition:transform 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.countdown-box:hover{
+  transform:translateY(-3px) scale(1.04);
+}
+
+/* Pulsing map button */
+@keyframes pulseBtn{
+  0%,100%{box-shadow:0 4px 20px rgba(0,53,39,0.3);}
+  50%{box-shadow:0 4px 30px rgba(0,53,39,0.5),0 0 0 6px rgba(6,78,59,0.15);}
+}
+.pulse-button{animation:pulseBtn 2.5s ease-in-out infinite;}
+
+/* reduced motion */
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important;}
+}
