@@ -365,7 +365,7 @@ html[lang="ar"][dir="rtl"] .english-text { display: none; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 100px;
+  padding-top: 50px;
   padding-bottom: 64px;
   padding-left: 24px;
   padding-right: 24px;
