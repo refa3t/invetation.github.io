@@ -40,7 +40,9 @@
 
 html, body {
   width: 100%;
-  min-height: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -49,6 +51,8 @@ body {
   color: var(--mauve);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 /* ═══════════════ BILINGUAL TEXT ═══════════════ */
@@ -372,9 +376,9 @@ html[lang="ar"][dir="rtl"] .english-text { display: none; }
   gap: 48px;
 }
 
-@media (min-height: 700px) {
+@media (min-height: 500px) {
   .invitation-content {
-    padding-top: 160px;
+    padding-top: 110px;
   }
 }
 
