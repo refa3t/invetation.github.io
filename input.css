@@ -268,7 +268,7 @@ html[lang="ar"][dir="rtl"] .english-text { display: none; }
   bottom: 0;
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: flex-end;
   z-index: 20;
   overflow: visible;
